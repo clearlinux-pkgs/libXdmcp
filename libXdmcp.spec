@@ -4,7 +4,7 @@
 #
 Name     : libXdmcp
 Version  : 1.1.2
-Release  : 5
+Release  : 6
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libXdmcp-1.1.2.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libXdmcp-1.1.2.tar.bz2
 Summary  : X Display Manager Control Protocol library
