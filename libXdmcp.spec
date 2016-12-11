@@ -4,7 +4,7 @@
 #
 Name     : libXdmcp
 Version  : 1.1.2
-Release  : 7
+Release  : 8
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libXdmcp-1.1.2.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libXdmcp-1.1.2.tar.bz2
 Summary  : X Display Manager Control Protocol library
@@ -26,6 +26,7 @@ Xorg mailing list:
 Summary: dev components for the libXdmcp package.
 Group: Development
 Requires: libXdmcp-lib
+Provides: libXdmcp-devel
 
 %description dev
 dev components for the libXdmcp package.
@@ -51,10 +52,15 @@ lib components for the libXdmcp package.
 %setup -q -n libXdmcp-1.1.2
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -67,8 +73,8 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/X11/Xdmcp.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libXdmcp.so
+/usr/lib64/pkgconfig/xdmcp.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -76,4 +82,5 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libXdmcp.so.6
+/usr/lib64/libXdmcp.so.6.0.0
